@@ -80,10 +80,4 @@ class ArticleComment
         return $this->datetimeCreated;
     }
 
-    public function setDatetimeCreated(\DateTimeInterface $datetimeCreated): static
-    {
-        $this->datetimeCreated = $datetimeCreated;
-
-        return $this;
-    }
 }

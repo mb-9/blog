@@ -34,14 +34,23 @@ class ArticleRepository extends ServiceEntityRepository
             ->orderBy('article.datetimeCreated', 'ASC')
             ->getQuery();
     }
+    
+    /**
+     * findAllWithCommentCounts
+     *
+     * @param  mixed $value
+     * @return Query
+     */
+    public function findAllWithCommentCounts($value): Query
+    {
+   
+        return $this->createQueryBuilder('article')
+        ->select(['article', 'COUNT(ac.idArticle) as cntComments'])
+        ->leftJoin('App\Entity\ArticleComment','ac', \Doctrine\ORM\Query\Expr\Join::WITH, 'article.id = ac.idArticle ')
+        ->groupBy('article.id')
+        ->getQuery();
 
-//    public function findOneBySomeField($value): ?Article
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    }
+
+
 }

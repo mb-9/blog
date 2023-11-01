@@ -14,20 +14,21 @@
                 <th>DatetimeCreated</th>
                 <th>Content</th>
                 <th>actions</th>
+                 <th>comments</th>
             </tr>
         </thead>
         <tbody>
-        {% for article in articlesPaginated %}
+        {% for articleItem in articlesPaginated %}
             <tr>
-                <td>{{ article.id }}</td>
-                <td>{{ article.title }}</td>
-                <td>{{ article.description }}</td>
-                <td>{{ article.datetimeCreated ? article.datetimeCreated|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ article.content }}</td>
+                <td>{{ articleItem.0.id }}</td>
+                <td>{{ articleItem.0.title }}</td>
+                <td>{{ articleItem.0.description }}</td>
+                <td>{{ articleItem.0.datetimeCreated ? articleItem.0.datetimeCreated|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('app_article_show', {'id': article.id}) }}">show</a>
-                    <a href="{{ path('app_article_edit', {'id': article.id}) }}">edit</a>
+                    <a href="{{ path('app_article_show', {'id': articleItem.0.id}) }}">show</a>
+                    <a href="{{ path('app_article_edit', {'id': articleItem.0.id}) }}">edit</a>
                 </td>
+                <td>{{ articleItem.cntComments }}</td>
             </tr>
         {% else %}
 

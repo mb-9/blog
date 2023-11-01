@@ -96,6 +96,11 @@ class Article
         return $this->articleComments;
     }
 
+    /*public function getArticleCommentsCount(): int
+    {
+        return COUNT($this->articleComments);
+    }*/
+
     public function addArticleComment(ArticleComment $articleComment): static
     {
         if (!$this->articleComments->contains($articleComment)) {

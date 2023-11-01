@@ -3,7 +3,9 @@
 namespace App\DataFixtures;
 
 use App\Entity\Article;
+use App\Entity\CommentUser;
 use App\Entity\ArticleAuthor;
+use App\Entity\ArticleComment;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 
@@ -92,8 +94,33 @@ class AppFixtures extends Fixture
         
     
 
+      
+
+
+        $commentUser = new CommentUser();
+        $commentUser->setEmail('testemail@gmail.com');
+       
+        
+
+        $comment1 = new ArticleComment();
+        $comment1->setIdUser($commentUser);
+        $comment1->setIdArticle($article1);
+        $comment1->setMessage("nice");
+
+        $comment2 = new ArticleComment();
+        $comment2->setIdUser($commentUser);
+        $comment2->setIdArticle($article1);
+        $comment2->setMessage("cool");
+
+        $comment3 = new ArticleComment();
+        $comment3->setIdUser($commentUser);
+        $comment3->setIdArticle($article2);
+        $comment3->setMessage("nice");
+
+
         $manager->persist($articleAuthor);
         $manager->persist($articleAuthor2);
+        $manager->persist($article1);
         $manager->persist($article2);
         $manager->persist($article3);
         $manager->persist($article4);
@@ -105,7 +132,11 @@ class AppFixtures extends Fixture
         $manager->persist($article10);
         $manager->persist($article11);
         $manager->persist($article12);
+        $manager->persist($commentUser);
 
+        $manager->persist($comment1);
+        $manager->persist($comment2);
+        $manager->persist($comment3);
 
         $manager->flush();
     }

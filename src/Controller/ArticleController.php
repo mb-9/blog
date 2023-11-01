@@ -22,7 +22,7 @@ class ArticleController extends AbstractController
 
       
         $articlesPaginated = $paginator->paginate(
-            $articleRepository->findAllAsc('example'),
+            $articleRepository->findAllWithCommentCounts(''),
             $request->query->getInt('page', 1), 
             10);
 
@@ -53,8 +53,10 @@ class ArticleController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_article_show', methods: ['GET'])]
-    public function show(Article $article): Response
+    public function show(Article $article, PaginatorInterface $paginator): Response
     {
+
+        
         return $this->render('article/show.html.twig', [
             'article' => $article,
         ]);
