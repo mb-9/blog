@@ -41,7 +41,7 @@
             </tr>
         </thead>
         <tbody>
-        {% for comment in article.articleComments %}
+        {% for comment in commentsPaginated %}
             <tr>
                 <td>{{ comment.idUser.email }}</td>
                 <td>{{ comment.message }}</td>
@@ -53,6 +53,7 @@
                 <td colspan="6">no records found</td>
             </tr>
         {% endfor %}
+               {{knp_pagination_render(commentsPaginated)}}
 
 
         </tbody>

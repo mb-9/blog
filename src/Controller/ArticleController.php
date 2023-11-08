@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Form\ArticleType;
+use App\Repository\ArticleCommentRepository;
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -53,13 +54,20 @@ class ArticleController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_article_show', methods: ['GET'])]
-    public function show(Article $article, PaginatorInterface $paginator): Response
+    public function show(Article $article, PaginatorInterface $paginator, ArticleCommentRepository $articleCommentRepository, Request $request): Response
     {
 
-        
+        $commentsPaginated = $paginator->paginate(
+            $articleCommentRepository->findBy(array('idArticle' => $article->getId()),array('datetimeCreated' => 'DESC')),
+            $request->query->getInt('page', 1), 
+            10);
+            
+
         return $this->render('article/show.html.twig', [
-            'article' => $article,
+            'article'           => $article,
+            'commentsPaginated' => $commentsPaginated
         ]);
+
     }
 
     #[Route('/{id}/edit', name: 'app_article_edit', methods: ['GET', 'POST'])]

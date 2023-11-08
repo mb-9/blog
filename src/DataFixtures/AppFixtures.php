@@ -105,17 +105,79 @@ class AppFixtures extends Fixture
         $comment1 = new ArticleComment();
         $comment1->setIdUser($commentUser);
         $comment1->setIdArticle($article1);
-        $comment1->setMessage("nice");
+        $comment1->setMessage("Great article, very informative!");
 
         $comment2 = new ArticleComment();
         $comment2->setIdUser($commentUser);
         $comment2->setIdArticle($article1);
-        $comment2->setMessage("cool");
+        $comment2->setMessage("I learned a lot from this post. Thanks!");
 
         $comment3 = new ArticleComment();
         $comment3->setIdUser($commentUser);
-        $comment3->setIdArticle($article2);
-        $comment3->setMessage("nice");
+        $comment3->setIdArticle($article1);
+        $comment3->setMessage("This is exactly what I was looking for. Good job!");
+
+        $comment4 = new ArticleComment();
+        $comment4->setIdUser($commentUser);
+        $comment4->setIdArticle($article1);
+        $comment4->setMessage("Well-written and concise. Kudos!");
+
+        $comment5 = new ArticleComment();
+        $comment5->setIdUser($commentUser);
+        $comment5->setIdArticle($article1);
+        $comment5->setMessage("I enjoyed reading this. Keep it up!");
+
+        $comment6 = new ArticleComment();
+        $comment6->setIdUser($commentUser);
+        $comment6->setIdArticle($article1);
+        $comment6->setMessage("Your insights are spot on. Thank you!");
+
+        $comment7 = new ArticleComment();
+        $comment7->setIdUser($commentUser);
+        $comment7->setIdArticle($article1);
+        $comment7->setMessage("This article is a gem. Well done!");
+
+        $comment8 = new ArticleComment();
+        $comment8->setIdUser($commentUser);
+        $comment8->setIdArticle($article1);
+        $comment8->setMessage("I found this very helpful. Keep sharing!");
+
+        $comment9 = new ArticleComment();
+        $comment9->setIdUser($commentUser);
+        $comment9->setIdArticle($article1);
+        $comment9->setMessage("Informative and engaging. Great work!");
+
+        $comment10 = new ArticleComment();
+        $comment10->setIdUser($commentUser);
+        $comment10->setIdArticle($article1);
+        $comment10->setMessage("This article deserves recognition. Impressive!");
+
+        $comment11 = new ArticleComment();
+        $comment11->setIdUser($commentUser);
+        $comment11->setIdArticle($article1);
+        $comment11->setMessage("I couldn't agree more with the points made here!");
+
+        $comment12 = new ArticleComment();
+        $comment12->setIdUser($commentUser);
+        $comment12->setIdArticle($article1);
+        $comment12->setMessage("This content is a valuable resource. Thank you!");
+
+        $comment13 = new ArticleComment();
+        $comment13->setIdUser($commentUser);
+        $comment13->setIdArticle($article1);
+        $comment13->setMessage("I'm sharing this article with my friends. It's great!");
+
+        $comment14 = new ArticleComment();
+        $comment14->setIdUser($commentUser);
+        $comment14->setIdArticle($article1);
+        $comment14->setMessage("Your writing style is excellent. I'm a fan!");
+
+        $comment15 = new ArticleComment();
+        $comment15->setIdUser($commentUser);
+        $comment15->setIdArticle($article1);
+        $comment15->setMessage("I look forward to your next post. Well done!");
+
+
 
 
         $manager->persist($articleAuthor);
@@ -137,6 +199,18 @@ class AppFixtures extends Fixture
         $manager->persist($comment1);
         $manager->persist($comment2);
         $manager->persist($comment3);
+        $manager->persist($comment4);
+        $manager->persist($comment5);
+        $manager->persist($comment6);
+        $manager->persist($comment7);
+        $manager->persist($comment8);
+        $manager->persist($comment9);
+        $manager->persist($comment10);
+        $manager->persist($comment11);
+        $manager->persist($comment12);
+        $manager->persist($comment13);
+        $manager->persist($comment14);
+        $manager->persist($comment15);
 
         $manager->flush();
     }

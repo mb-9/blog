@@ -37,6 +37,7 @@ class ArticleRepository extends ServiceEntityRepository
     
     /**
      * findAllWithCommentCounts
+     * Using this because if the index of entities will be too long, for each entity there'd be query for comments 
      *
      * @param  mixed $value
      * @return Query
