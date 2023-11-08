@@ -1,34 +1,33 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Article index{% endblock %}
+{% block title %}Blog index{% endblock %}
 
 {% block body %}
-    <h1>Article index</h1>
+    <h1>Blog index</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Title</th>
                 <th>Description</th>
-                <th>DatetimeCreated</th>
-                <th>Content</th>
-                <th>actions</th>
-                 <th>comments</th>
+                <th>Author</th>
+                <th>Date</th>
+                <th>Comments</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for articleItem in articlesPaginated %}
             <tr>
-                <td>{{ articleItem.0.id }}</td>
                 <td>{{ articleItem.0.title }}</td>
                 <td>{{ articleItem.0.description }}</td>
+                <td>{{ articleItem.email }}</td>
                 <td>{{ articleItem.0.datetimeCreated ? articleItem.0.datetimeCreated|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ articleItem.cntComments }}</td>
                 <td>
                     <a href="{{ path('app_article_show', {'id': articleItem.0.id}) }}">show</a>
                     <a href="{{ path('app_article_edit', {'id': articleItem.0.id}) }}">edit</a>
                 </td>
-                <td>{{ articleItem.cntComments }}</td>
             </tr>
         {% else %}
 
@@ -41,5 +40,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_article_new') }}">Create new</a>
+    <a href="{{ path('app_article_new') }}">Create new blog post</a>
 {% endblock %}

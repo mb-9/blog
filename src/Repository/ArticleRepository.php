@@ -46,8 +46,9 @@ class ArticleRepository extends ServiceEntityRepository
     {
    
         return $this->createQueryBuilder('article')
-        ->select(['article', 'COUNT(ac.idArticle) as cntComments'])
+        ->select(['article','aa.email', 'COUNT(ac.idArticle) as cntComments'])
         ->leftJoin('App\Entity\ArticleComment','ac', \Doctrine\ORM\Query\Expr\Join::WITH, 'article.id = ac.idArticle ')
+        ->leftJoin('App\Entity\ArticleAuthor','aa', \Doctrine\ORM\Query\Expr\Join::WITH, 'article.idAuthor = aa.id')
         ->groupBy('article.id')
         ->getQuery();
 

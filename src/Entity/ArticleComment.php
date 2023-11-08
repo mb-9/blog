@@ -28,6 +28,9 @@ class ArticleComment
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $datetimeCreated = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $email = null;
+
     public function __construct(){
         
         $this->datetimeCreated  = new \Datetime();
@@ -78,6 +81,18 @@ class ArticleComment
     public function getDatetimeCreated(): ?\DateTimeInterface
     {
         return $this->datetimeCreated;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): static
+    {
+        $this->email = $email;
+
+        return $this;
     }
 
 }

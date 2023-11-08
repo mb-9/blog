@@ -3,24 +3,16 @@
 {% block title %}Article{% endblock %}
 
 {% block body %}
-    <h1>Article</h1>
+    <h1>Blog post</h1>
 
     <table class="table">
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ article.id }}</td>
-            </tr>
             <tr>
                 <th>Title</th>
                 <td>{{ article.title }}</td>
             </tr>
             <tr>
-                <th>Description</th>
-                <td>{{ article.description }}</td>
-            </tr>
-            <tr>
-                <th>DatetimeCreated</th>
+                <th>Date</th>
                 <td>{{ article.datetimeCreated ? article.datetimeCreated|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
@@ -41,6 +33,13 @@
             </tr>
         </thead>
         <tbody>
+
+        <h2>Comments</h2>
+
+
+        {{ include('article_comment/_form.html.twig') }}
+
+
         {% for comment in commentsPaginated %}
             <tr>
                 <td>{{ comment.idUser.email }}</td>
@@ -63,5 +62,4 @@
 
     <a href="{{ path('app_article_edit', {'id': article.id}) }}">edit</a>
 
-    {{ include('article/_delete_form.html.twig') }}
 {% endblock %}
