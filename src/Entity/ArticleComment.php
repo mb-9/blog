@@ -18,10 +18,6 @@ class ArticleComment
     #[ORM\JoinColumn(nullable: false)]
     private ?Article $idArticle = null;
 
-    #[ORM\ManyToOne(inversedBy: 'articleComments')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?CommentUser $idUser = null;
-
     #[ORM\Column(type: Types::TEXT)]
     private ?string $message = null;
 
@@ -50,18 +46,6 @@ class ArticleComment
     public function setIdArticle(?Article $idArticle): static
     {
         $this->idArticle = $idArticle;
-
-        return $this;
-    }
-
-    public function getIdUser(): ?CommentUser
-    {
-        return $this->idUser;
-    }
-
-    public function setIdUser(?CommentUser $idUser): static
-    {
-        $this->idUser = $idUser;
 
         return $this;
     }

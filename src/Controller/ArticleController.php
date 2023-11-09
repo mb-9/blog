@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Form\ArticleType;
-use Psr\Log\LoggerInterface;
 use App\Entity\ArticleComment;
 use App\Form\ArticleCommentType;
 use App\Repository\ArticleRepository;
@@ -70,12 +69,8 @@ class ArticleController extends AbstractController
         EntityManagerInterface $entityManager
     ): Response {
 
-        
-        $commentUser = $commentUserRepository->findOneBy(['id' => 2]);
-
         $articleComment = new ArticleComment();
         $articleComment->setIdArticle($article);
-        $articleComment->setIdUser($commentUser);
 
         $form = $this->createForm(ArticleCommentType::class, $articleComment);
         $form->handleRequest($request);

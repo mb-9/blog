@@ -94,88 +94,83 @@ class AppFixtures extends Fixture
         
     
 
-      
 
-
-        $commentUser = new CommentUser();
-        $commentUser->setEmail('testemail@gmail.com');
-       
         
 
         $comment1 = new ArticleComment();
-        $comment1->setIdUser($commentUser);
         $comment1->setIdArticle($article1);
         $comment1->setMessage("Great article, very informative!");
+        $comment1->setEmail("user1@example.com");
 
         $comment2 = new ArticleComment();
-        $comment2->setIdUser($commentUser);
         $comment2->setIdArticle($article1);
         $comment2->setMessage("I learned a lot from this post. Thanks!");
+        $comment2->setEmail("user2@example.com");
 
         $comment3 = new ArticleComment();
-        $comment3->setIdUser($commentUser);
         $comment3->setIdArticle($article1);
         $comment3->setMessage("This is exactly what I was looking for. Good job!");
+        $comment3->setEmail("user3@example.com");
 
         $comment4 = new ArticleComment();
-        $comment4->setIdUser($commentUser);
         $comment4->setIdArticle($article1);
         $comment4->setMessage("Well-written and concise. Kudos!");
+        $comment4->setEmail("user4@example.com");
 
         $comment5 = new ArticleComment();
-        $comment5->setIdUser($commentUser);
         $comment5->setIdArticle($article1);
         $comment5->setMessage("I enjoyed reading this. Keep it up!");
+        $comment5->setEmail("user5@example.com");
 
         $comment6 = new ArticleComment();
-        $comment6->setIdUser($commentUser);
         $comment6->setIdArticle($article1);
         $comment6->setMessage("Your insights are spot on. Thank you!");
+        $comment6->setEmail("user6@example.com");
 
         $comment7 = new ArticleComment();
-        $comment7->setIdUser($commentUser);
         $comment7->setIdArticle($article1);
         $comment7->setMessage("This article is a gem. Well done!");
+        $comment7->setEmail("user7@example.com");
 
         $comment8 = new ArticleComment();
-        $comment8->setIdUser($commentUser);
         $comment8->setIdArticle($article1);
         $comment8->setMessage("I found this very helpful. Keep sharing!");
+        $comment8->setEmail("user8@example.com");
 
         $comment9 = new ArticleComment();
-        $comment9->setIdUser($commentUser);
         $comment9->setIdArticle($article1);
         $comment9->setMessage("Informative and engaging. Great work!");
+        $comment9->setEmail("user9@example.com");
 
         $comment10 = new ArticleComment();
-        $comment10->setIdUser($commentUser);
         $comment10->setIdArticle($article1);
         $comment10->setMessage("This article deserves recognition. Impressive!");
+        $comment10->setEmail("user10@example.com");
 
         $comment11 = new ArticleComment();
-        $comment11->setIdUser($commentUser);
         $comment11->setIdArticle($article1);
         $comment11->setMessage("I couldn't agree more with the points made here!");
+        $comment11->setEmail("user11@example.com");
 
         $comment12 = new ArticleComment();
-        $comment12->setIdUser($commentUser);
         $comment12->setIdArticle($article1);
         $comment12->setMessage("This content is a valuable resource. Thank you!");
+        $comment12->setEmail("user12@example.com");
 
         $comment13 = new ArticleComment();
-        $comment13->setIdUser($commentUser);
         $comment13->setIdArticle($article1);
         $comment13->setMessage("I'm sharing this article with my friends. It's great!");
+        $comment13->setEmail("user13@example.com");
 
         $comment14 = new ArticleComment();
-        $comment14->setIdUser($commentUser);
         $comment14->setIdArticle($article1);
         $comment14->setMessage("Your writing style is excellent. I'm a fan!");
+        $comment14->setEmail("user14@example.com");
 
         $comment15 = new ArticleComment();
-        $comment15->setIdUser($commentUser);
         $comment15->setIdArticle($article1);
         $comment15->setMessage("I look forward to your next post. Well done!");
+        $comment15->setEmail("user15@example.com");
 
 
 
@@ -194,7 +189,6 @@ class AppFixtures extends Fixture
         $manager->persist($article10);
         $manager->persist($article11);
         $manager->persist($article12);
-        $manager->persist($commentUser);
 
         $manager->persist($comment1);
         $manager->persist($comment2);

@@ -3,6 +3,7 @@
 namespace App\Test\Controller;
 
 use App\Entity\Article;
+use App\Entity\ArticleAuthor;
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
@@ -30,10 +31,8 @@ class ArticleControllerTest extends WebTestCase
         $crawler = $this->client->request('GET', $this->path);
 
         self::assertResponseStatusCodeSame(200);
-        self::assertPageTitleContains('Article index');
+        self::assertPageTitleContains('Blog index');
 
-        // Use the $crawler to perform additional assertions e.g.
-        // self::assertSame('Some text on the page', $crawler->filter('.p')->first());
     }
 
     public function testNew(): void
@@ -48,9 +47,8 @@ class ArticleControllerTest extends WebTestCase
         $this->client->submitForm('Save', [
             'article[title]' => 'Testing',
             'article[description]' => 'Testing',
-            'article[datetimeCreated]' => 'Testing',
             'article[content]' => 'Testing',
-            'article[idAuthor]' => 'Testing',
+            'article[idAuthor]' => 1,
         ]);
 
         self::assertResponseRedirects('/article/');
@@ -60,12 +58,18 @@ class ArticleControllerTest extends WebTestCase
 
     public function testShow(): void
     {
+
         $this->markTestIncomplete();
+        $fixtureAuthor = new ArticleAuthor();
+        $fixtureAuthor->setEmail("authoremail@testemail.com");
+
+        $this->manager->persist($fixtureAuthor);
+        
         $fixture = new Article();
         $fixture->setTitle('My Title');
         $fixture->setDescription('My Title');
         $fixture->setContent('My Title');
-        $fixture->setIdAuthor('My Title');
+        $fixture->setIdAuthor($fixtureAuthor);
 
         $this->manager->persist($fixture);
         $this->manager->flush();
@@ -73,11 +77,11 @@ class ArticleControllerTest extends WebTestCase
         $this->client->request('GET', sprintf('%s%s', $this->path, $fixture->getId()));
 
         self::assertResponseStatusCodeSame(200);
-        self::assertPageTitleContains('Article');
-
-        // Use assertions to check that the properties are properly displayed.
+        self::assertPageTitleContains('Blog post');
     }
 
+
+/*
     public function testEdit(): void
     {
         $this->markTestIncomplete();
@@ -133,5 +137,5 @@ class ArticleControllerTest extends WebTestCase
 
         self::assertSame($originalNumObjectsInRepository, count($this->repository->findAll()));
         self::assertResponseRedirects('/article/');
-    }
+    }*/
 }

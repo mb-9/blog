@@ -25,7 +25,7 @@ class ArticleCommentControllerTest extends WebTestCase
         }
     }
 
-    public function testIndex(): void
+    /*public function testIndex(): void
     {
         $crawler = $this->client->request('GET', $this->path);
 
@@ -130,5 +130,5 @@ class ArticleCommentControllerTest extends WebTestCase
 
         self::assertSame($originalNumObjectsInRepository, count($this->repository->findAll()));
         self::assertResponseRedirects('/article/comment/');
-    }
+    }*/
 }

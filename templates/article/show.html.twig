@@ -42,7 +42,7 @@
 
         {% for comment in commentsPaginated %}
             <tr>
-                <td>{{ comment.idUser.email }}</td>
+                <td>{{ comment.email }}</td>
                 <td>{{ comment.message }}</td>
                 <td>{{ comment.datetimeCreated |format_datetime()  }}</td>
             </tr>
