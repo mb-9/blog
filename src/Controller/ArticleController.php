@@ -8,7 +8,6 @@ use App\Entity\ArticleComment;
 use App\Form\ArticleCommentType;
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use App\Repository\CommentUserRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use App\Repository\ArticleCommentRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,14 +23,11 @@ class ArticleController extends AbstractController
     public function index(ArticleRepository $articleRepository,  PaginatorInterface $paginator, Request $request): Response
     {
 
-
         $articlesPaginated = $paginator->paginate(
             $articleRepository->findAllWithCommentCounts(''),
             $request->query->getInt('page', 1),
-            10
+            $this->getParameter("app.articles.pagelimit")
         );
-
-        
 
         return $this->render('article/index.html.twig', [
             'articles' => $articleRepository->findAll(),
@@ -64,13 +60,12 @@ class ArticleController extends AbstractController
         Article $article,
         PaginatorInterface $paginator,
         ArticleCommentRepository $articleCommentRepository,
-        CommentUserRepository $commentUserRepository,
         Request $request,
         EntityManagerInterface $entityManager
     ): Response {
 
         $articleComment = new ArticleComment();
-        $articleComment->setIdArticle($article);
+        $article->addArticleComment($articleComment);
 
         $form = $this->createForm(ArticleCommentType::class, $articleComment);
         $form->handleRequest($request);
@@ -80,13 +75,11 @@ class ArticleController extends AbstractController
             $entityManager->flush();
         }
 
-
         $commentsPaginated = $paginator->paginate(
             $articleCommentRepository->findBy(array('idArticle' => $article->getId()), array('datetimeCreated' => 'DESC')),
             $request->query->getInt('page', 1),
-            10
+            $this->getParameter("app.comments.pagelimit")
         );
-
 
         return $this->render('article/show.html.twig', [
             'article'           => $article,
