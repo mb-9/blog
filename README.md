@@ -11,8 +11,10 @@ Installation
 ------------
 
 ```bash
-# create a new project
-$ composer create-project mb-9/blog my_project
+# clone the code repository and install its dependencies
+$ git clone https://github.com/mb-9/blog.git my_project
+$ cd my_project/
+$ composer install
 ```
 
 
