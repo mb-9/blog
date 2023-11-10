@@ -2,9 +2,11 @@
 
 namespace App\Test\Controller;
 
+use App\Entity\Article;
+use App\Entity\ArticleAuthor;
 use App\Entity\ArticleComment;
-use App\Repository\ArticleCommentRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\ArticleCommentRepository;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -25,37 +27,48 @@ class ArticleCommentControllerTest extends WebTestCase
         }
     }
 
+    public function testNew(): void {
+
+        $fixtureAuthor = new ArticleAuthor();
+        $fixtureAuthor->setEmail("authoremail@testemail.com");
+
+        $fixture = new Article();
+        $fixture->setTitle('My Title');
+        $fixture->setDescription('My Description');
+        $fixture->setContent('My Content');
+        $fixture->setIdAuthor($fixtureAuthor);
+
+
+        $this->manager = static::getContainer()->get(EntityManagerInterface::class);
+        $this->manager->persist($fixtureAuthor);
+        $this->manager->persist($fixture);
+        $this->manager->flush();
+
+
+        $originalNumObjectsInRepository = count($this->repository->findAll());
+
+        $this->client->request('GET', twig_sprintf('article/' . $fixture->getId(), $this->path));
+
+        self::assertResponseStatusCodeSame(200);
+        
+        $this->client->submitForm('Save', [
+            'article_comment[message]' => 'Booo',
+            'article_comment[email]' => 'test@email.com',
+        ]);
+  
+        self::assertSame($originalNumObjectsInRepository + 1, count($this->repository->findAll()));
+    }
+
     /*public function testIndex(): void
     {
         $crawler = $this->client->request('GET', $this->path);
 
-        self::assertResponseStatusCodeSame(200);
-        self::assertPageTitleContains('ArticleComment index');
 
         // Use the $crawler to perform additional assertions e.g.
         // self::assertSame('Some text on the page', $crawler->filter('.p')->first());
     }
 
-    public function testNew(): void
-    {
-        $originalNumObjectsInRepository = count($this->repository->findAll());
 
-        $this->markTestIncomplete();
-        $this->client->request('GET', sprintf('%snew', $this->path));
-
-        self::assertResponseStatusCodeSame(200);
-
-        $this->client->submitForm('Save', [
-            'article_comment[message]' => 'Testing',
-            'article_comment[datetimeCreated]' => 'Testing',
-            'article_comment[idArticle]' => 'Testing',
-            'article_comment[idUser]' => 'Testing',
-        ]);
-
-        self::assertResponseRedirects('/article/comment/');
-
-        self::assertSame($originalNumObjectsInRepository + 1, count($this->repository->findAll()));
-    }
 
     public function testShow(): void
     {
