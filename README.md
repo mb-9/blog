@@ -17,6 +17,23 @@ $ cd my_project/
 $ composer install
 ```
 
+Database
+--------
+
+Set up connection string in .env and run 
+
+```bash
+symfony console doctrine:migrations:migrate
+```
+
+
+Fixtures
+-----
+
+```bash
+symfony console doctrine:fixtures:load 
+```
+
 
 Tests
 -----
