@@ -3,7 +3,6 @@
 namespace App\DataFixtures;
 
 use App\Entity\Article;
-use App\Entity\CommentUser;
 use App\Entity\ArticleAuthor;
 use App\Entity\ArticleComment;
 use Doctrine\Persistence\ObjectManager;

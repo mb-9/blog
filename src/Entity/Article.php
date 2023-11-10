@@ -37,7 +37,7 @@ class Article
 
     public function __construct()
     {
-        $this->articleComments     = new ArrayCollection();
+        $this->articleComments  = new ArrayCollection();
         $this->datetimeCreated  = new \DateTime(); 
     }
 
