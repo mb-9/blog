@@ -37,9 +37,9 @@ class ArticleControllerTest extends WebTestCase
 
     public function testNew(): void
     {
+        $this->markTestIncomplete();
         $originalNumObjectsInRepository = count($this->repository->findAll());
 
-        $this->markTestIncomplete();
         $this->client->request('GET', sprintf('%snew', $this->path));
 
         self::assertResponseStatusCodeSame(200);
@@ -59,11 +59,10 @@ class ArticleControllerTest extends WebTestCase
     public function testShow(): void
     {
 
-        $this->markTestIncomplete();
         $fixtureAuthor = new ArticleAuthor();
         $fixtureAuthor->setEmail("authoremail@testemail.com");
 
-        $this->manager->persist($fixtureAuthor);
+        
         
         $fixture = new Article();
         $fixture->setTitle('My Title');
@@ -71,6 +70,7 @@ class ArticleControllerTest extends WebTestCase
         $fixture->setContent('My Title');
         $fixture->setIdAuthor($fixtureAuthor);
 
+        $this->manager->persist($fixtureAuthor);
         $this->manager->persist($fixture);
         $this->manager->flush();
 
