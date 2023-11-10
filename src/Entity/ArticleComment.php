@@ -30,6 +30,8 @@ class ArticleComment
     public function __construct(){
         
         $this->datetimeCreated  = new \Datetime();
+        $this->email            = "";
+        $this->message          = "";
 
     }
 

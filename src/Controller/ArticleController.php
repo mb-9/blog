@@ -73,6 +73,8 @@ class ArticleController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($articleComment);
             $entityManager->flush();
+
+            return $this->redirect($request->getUri());
         }
 
         $commentsPaginated = $paginator->paginate(
