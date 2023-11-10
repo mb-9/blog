@@ -42,7 +42,7 @@ Execute this command to run tests:
 
 ```bash
 $ cd my_project/
-$ ./bin/phpunit
+$ php /bin/phpunit
 ```
 
 [1]: https://symfony.com/doc/current/setup.html#technical-requirements
