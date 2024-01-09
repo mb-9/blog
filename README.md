@@ -1,5 +1,7 @@
 Symfony Blog Application
 ========================
+This is a simple blog application with overview of blog messages, blog detail, validation, comments.
+Backend only.
 
 Requirements
 ------------
